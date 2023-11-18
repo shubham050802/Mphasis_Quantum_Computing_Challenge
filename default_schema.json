@@ -1,0 +1,18 @@
+{
+    "PNR": {
+        "SSR": {"selected": false, "score": 0},
+        "cabin": {"selected": false, "score": 0},
+        "class": {"selected": false, "score": 0},
+        "check_in": {"selected": false, "score": 0},
+        "baggage": {"selected": false, "score": 0},
+        "connection": {"selected": false, "score": 0},
+        "paid_service": {"selected": false, "score": 0}
+    },
+    "Flight": {
+        "arrival_delay": {"selected": false, "score": 0},
+        "equipment": {"selected": false, "score": 0},
+        "city_pairs": {"selected": false, "score": 0},
+        "ostd": {"selected": false, "score": 0},
+        "stopover": {"selected": false, "score": 0}
+    }
+}
