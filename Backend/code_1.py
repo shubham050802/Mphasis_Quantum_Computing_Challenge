@@ -21,11 +21,7 @@ pnr.set_index('RECLOC',inplace=True)
 
 # Make a general graph structure using class
 
-def get_time_diff(d1,t1,d2,t2):
-    format = '%m/%d/%Y %H:%M'
-    t1 = datetime.strptime(str(d1)+' '+str(t1),format)
-    t2 = datetime.strptime(str(d2)+' '+str(t2),format)
-    return (t2-t1).total_seconds()/3600
+
 
 def print_matrix(matrix):
     for entry in matrix:
@@ -34,6 +30,13 @@ def print_matrix(matrix):
 
 
 class Graph:
+
+    def get_time_diff(self,d1,t1,d2,t2):
+        format = '%m/%d/%Y %H:%M'
+        t1 = datetime.strptime(str(d1)+' '+str(t1),format)
+        t2 = datetime.strptime(str(d2)+' '+str(t2),format)
+        return (t2-t1).total_seconds()/3600
+    
 
     def __init__(self, vertices):
         self.V = len(vertices)
@@ -105,7 +108,7 @@ class Graph:
                                     curr_departure_time = sch.loc[inv.loc[flight]['ScheduleId']]['DepartureTime']  
                                     curr_departure_date = inv.loc[flight]['DepartureDate']
 
-                                    time_diff = get_time_diff(prev_arrival_date,prev_arrival_time,curr_departure_date,curr_departure_time)
+                                    time_diff = self.get_time_diff(prev_arrival_date,prev_arrival_time,curr_departure_date,curr_departure_time)
 
                                 
                                     if(1<=time_diff<=12):
@@ -155,7 +158,7 @@ class Graph:
         print_matrix(self.graph)
 
 
-def main():
+def graph_init():
     all_cities = list(set(inv['DepartureAirport']).union(set(inv['ArrivalAirport'])))
 
     g = Graph(all_cities)
@@ -164,7 +167,7 @@ def main():
         g.add_edge(row['DepartureAirport'],row['ArrivalAirport'],index)
 
 
-    g.gen_path_pnr_compatibility_matrix()
+    return g
 
 
     
